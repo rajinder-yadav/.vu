@@ -29,11 +29,12 @@ I dislike everything in one single file. Seperation of concern is a better desig
 
 I place Code for the Component Class, Template and Style in their own separate files.
 
-I got tired of creating the files and sub-folder manually and then using snippets to generate the source code. This is were "vu" comes to the rescue, it does all this with easy to use commands.
+I got tired of creating the files and sub-folder manually and then using snippets to generate the source code. This is when "vu" was born, it does all this with easy to use commands.
 
 ![image](images/folder.png)
 
-I created this for me, for the way I work. If you find this useful let me know on twitter.
+Vue CLI is not enough, so I coded a Bash script to extend it, this turned into "vu".
+If you find it useful, let me know on twitter.
 
 You can follow me: [@dev_mentor](https://twitter.com/dev_mentor)
 
