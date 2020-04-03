@@ -22,8 +22,11 @@ A Vue.js utility for TypeScript projects.
 
 ## Setup
 
+Run the following multi-line command in your terminal.
+
 ```sh
-curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh -o vu-setup.sh; bash ./vu-setup.sh
+curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
+-o vu-setup.sh; bash ./vu-setup.sh
 ```
 
 ### Verifing
