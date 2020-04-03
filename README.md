@@ -1,4 +1,4 @@
-# vu the missing Vue.js CLI 😍
+# The missing Vue.js CLI for TypeScript 😍
 
 A Vue.js utility for TypeScript projects.
 
@@ -6,7 +6,7 @@ A Vue.js utility for TypeScript projects.
 
 <!-- code_chunk_output -->
 
-- [vu the missing Vue.js CLI 😍](#vu-the-missing-vuejs-cli)
+- [The missing Vue.js CLI for TypeScript 😍](#the-missing-vuejs-cli-for-typescript)
   - [Introduction](#introduction)
   - [Setup](#setup)
     - [Verifying](#verifying)
@@ -55,12 +55,6 @@ curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
 -o vu-setup.sh; bash ./vu-setup.sh
 ```
 
-The "__vu__" CLI make use of Vue.js CLI to create a new project, make sure to install it.
-
-```sh
-npm install -g @vue/cli
-```
-
 ### Verifying
 
 From the terminal, type "__vu__" and press enter. You should see the following output.
@@ -68,7 +62,7 @@ From the terminal, type "__vu__" and press enter. You should see the following o
 ```sh
 $ vu
 
-vu the missing Vue.js CLI 😍 (v1.6.3)
+The missing Vue.js CLI for TypeScript 😍 (v1.7.0)
 
 Usage: vu <command> [options]
 
@@ -79,14 +73,14 @@ b                               Production build.
 g       c <name>                Generate Component under "components" folder.
 g       v <name>                Generate Component under "views" folder.
 g       <folder> <name>         Generate Component under declared folder.
-s                               Run development Server.
+s                               Run development Server.```
 ```
 
 ## Setting up manually
 
 If you some reason the setup command above failed. Here is how to setup up the script to work on Linux and MacOS manually.
 
-Clone project under your home folder.
+Clone project "__vu__" under your home folder.
 
 ```sh
 cd ~
@@ -101,20 +95,30 @@ if [ -f "${HOME}/.vu/vu.sh" ]; then
 fi
 ```
 
+The "__vu__" CLI makes use of Vue.js CLI to create a new project, make sure to install it.
+
+```sh
+npm install -g @vue/cli
+```
+
 ## Usage
 
 ### Create a Project
 
 - Creating a new Vue.js project "hello-world".
+- Run development server.
+
+__Note__: You will automatically be placed inside the new project folder.
 
 ```sh
 vu new hello-world
+vu s
 ```
 
 ### Generate a Component
 
 - Generating a Component called Dashboard.
-- Generated code will be place in the subfolder, "src/components/Dashboard".
+- Generated code will be place in the subfolder, "__src/components/Dashboard__".
 
 ```sh
 vu g c Dashboard
@@ -123,7 +127,7 @@ vu g c Dashboard
 ### Generate a View Component
 
 - Generating a View Component called Home.
-- Generated code will be place in the subfolder, "src/views/Dashboard".
+- Generated code will be place in the subfolder, "__src/views/Dashboard__".
 
 ```sh
 vu g v Home
@@ -131,7 +135,7 @@ vu g v Home
 
 ### Generate Component in another folder
 
-- Generating a Component called Login under subfolder, "src/Admin/Login".
+- Generating a Component called Login under subfolder, "__src/Admin/Login__".
 
 ```sh
 vu g Admin Login
@@ -151,4 +155,12 @@ vu s
 
 ```sh
 vu b
+```
+
+### Get Version
+
+- Display vu CLI version.
+
+```sh
+vu v
 ```
