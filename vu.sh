@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.6.3
+# Version: 1.7.0
 #=============================================================================================
 # Copy this "vu.sh" file to your home folder, then add snippet to your .bashrc file.
 #
@@ -103,6 +103,11 @@ function vu() {
             npm run serve
         ;;
 
+        # Command: version
+        v)
+            echo "v1.7.0"
+        ;;
+
         # Default: Show usage help text
         *)
             ShowUsage
@@ -114,7 +119,7 @@ function vu() {
 
 function ShowUsage() {
     # Show usage help.
-    printf "\nvu the missing Vue.js CLI 😍 (v1.6.3)\n\n"
+    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.7.0)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
