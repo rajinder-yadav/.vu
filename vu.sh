@@ -39,11 +39,11 @@ IDE="/usr/bin/code-insiders"
 
 function vu() {
 
-    if [[ -d "src" ]]; then
+    if [ -d "src" ]; then
         CSS_EXT=$(grep -Po '<style\slang="\K\w*' src/App.vue)
     fi
 
-    if [[ -z "$CSS_EXT" ]]; then
+    if [ -z "$CSS_EXT" ]; then
         # Fallback style type.
         CSS_EXT="stylus"
     fi
@@ -57,7 +57,7 @@ function vu() {
 
         # Command: new
         new)
-            if [[ ! -d ${2} ]]; then
+            if [ ! -d ${2} ]; then
                 # Create a new project.
                 vue create ${2}
                 cd ${2}
@@ -134,7 +134,7 @@ function GenerateComponent() {
     COMPONENT_NAME=${2}
     CSS_EXT=${3}
 
-    if [[ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]]; then
+    if [ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]; then
         echo "Creating Component folder"
         mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
         echo "Creating Component files"
