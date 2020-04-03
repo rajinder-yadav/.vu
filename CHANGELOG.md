@@ -1,11 +1,26 @@
-## 1.6.3 (2020-04-02)
+## 1.7.0 (2020-04-03)
+
+### Features
+
+- Removed Yarn support in setup script.
+- Updated Usage display.
+- README updated with version info and basic editing.
+
+### Fixes
+
+- Correct Bash if syntax, removed double brackets.
+- Updated setup script to check and install Vue.js CLI.
+- README Editing.
+
+---
+
+## 1.7.0 (2020-04-02)
 
 ### Features
 
 - Added LICENSE
 - Created CHANGELOG.md
 - Updated README.md, new Introduction secion and images.
-- Updated setup script to check and install Vue.js CLI.
 
 ### Fixes
 
