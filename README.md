@@ -50,7 +50,7 @@ There is no advantage since TypeScript is a superset of ECMAScript and future pr
 
 Run the following multi-line command in your terminal.
 
-```pre
+```sh
 curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
 -o vu-setup.sh; bash ./vu-setup.sh
 ```
