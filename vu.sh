@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.6.2
+# Version: 1.6.3
 #=============================================================================================
 # Copy this "vu.sh" file to your home folder, then add snippet to your .bashrc file.
 #
@@ -38,7 +38,10 @@ IDE="/usr/bin/code-insiders"
 # export CLI_CWD=$(pwd)
 
 function vu() {
-    CSS_EXT=$(grep -Po '<style\slang="\K\w*' src/App.vue)
+
+    if [[ -d "src" ]]; then
+        CSS_EXT=$(grep -Po '<style\slang="\K\w*' src/App.vue)
+    fi
 
     if [[ -z "$CSS_EXT" ]]; then
         # Fallback style type.
@@ -75,19 +78,19 @@ function vu() {
                     # Option: component
                     c)
                         # Use default components folder.
-                        GenerateComponent "components" ${3}
+                        GenerateComponent "components" ${3} ${CSS_EXT}
                     ;;
 
                     # Option: view
                     v)
                         # Use default components folder.
-                        GenerateComponent "views" ${3}
+                        GenerateComponent "views" ${3} ${CSS_EXT}
                     ;;
 
                     # Default: Use specified folder for code generation.
                     *)
                         # Folder & Component name provided.
-                        GenerateComponent ${2} ${3}
+                        GenerateComponent ${2} ${3} ${CSS_EXT}
                     ;;
                 esac
             fi
@@ -111,7 +114,7 @@ function vu() {
 
 function ShowUsage() {
     # Show usage help.
-    printf "\nvu the missing Vue.js CLI 😍\n\n"
+    printf "\nvu the missing Vue.js CLI 😍 (v1.6.3)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
@@ -129,6 +132,7 @@ function GenerateComponent() {
     # Default Component folder.cd
     FOLDER=${1}
     COMPONENT_NAME=${2}
+    CSS_EXT=${3}
 
     if [[ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]]; then
         echo "Creating Component folder"
@@ -136,8 +140,8 @@ function GenerateComponent() {
         echo "Creating Component files"
         touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
 
-        GenerateClassFile ${FOLDER} ${COMPONENT_NAME}
-        GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME}
+        GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
+        GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
     else
         echo "WARNING: Component folder exist, no operation was performed."
     fi
@@ -147,6 +151,8 @@ function GenerateComponent() {
 function GenerateClassFile() {
 FOLDER=${1}
 COMPONENT_NAME=${2}
+CSS_EXT=${3}
+
 # Generate Class file.
 cat >"./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
 import { Component, Prop, Vue } from "vue-property-decorator";
@@ -161,6 +167,7 @@ EOF
 function GenerateTemplateFile() {
 FOLDER=${1}
 COMPONENT_NAME=${2}
+CSS_EXT=${3}
 
 # Generate Template file.
 cat >"./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
