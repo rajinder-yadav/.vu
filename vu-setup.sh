@@ -28,9 +28,9 @@ if [[ -z ${NODE} ]]; then
     echo "WARNING! You must install Node.js"
 else
     if [[ -z ${VUE} ]]; then
-        if [[ -z ${YARN} ]]; then
+        if [[ ${YARN} ]]; then
             yarn global add @vue/cli
-        elif [[ -z ${NPM} ]]; then
+        elif [[ ${NPM} ]]; then
             npm install -g @vue/cli
         fi
     fi
