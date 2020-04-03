@@ -4,7 +4,7 @@
 
 - Removed Yarn support in setup script.
 - Updated Usage display.
-- README updated with version info and basic editing.
+- README updated with version info, requirements and basic editing.
 - Setup script added Git check.
 - Added "upgrade" command for vu script.
 
