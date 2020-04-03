@@ -6,10 +6,9 @@
 # Author: Rajinder Yadav
 # Date: April 2, 2020
 # Licence: MIT
-# Version: 1.1.1
+# Version: 1.1.2
 #=============================================================================================
 NODE=$(command -v node)
-YARN=$(command -v yarn)
 NPM=$(command -v npm)
 VUE=$(command -v vue)
 
@@ -26,14 +25,8 @@ EOF
 # Install Vue.js CLI dependency.
 if [ -z ${NODE} ]; then
     echo "WARNING! You must install Node.js"
-else
-    if [ -z ${VUE} ]; then
-        if [ ${YARN} ]; then
-            yarn global add @vue/cli
-        else
-            npm install -g @vue/cli
-        fi
-    fi
+elif [ -z ${VUE} ]; then
+    npm install -g @vue/cli
 fi
 
 # Place this at the end of the file.
