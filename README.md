@@ -48,6 +48,11 @@ There is no advantage since TypeScript is a superset of ECMAScript and future pr
 
 ## Setup
 
+Before running the install script below, make sure you have the following installed:
+
+1. Node.js
+1. Git
+
 Run the following multi-line command in your terminal.
 
 ```sh
