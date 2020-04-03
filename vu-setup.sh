@@ -24,13 +24,13 @@ fi
 EOF
 
 # Install Vue.js CLI dependency.
-if [[ -z ${NODE} ]]; then
+if [ -z ${NODE} ]; then
     echo "WARNING! You must install Node.js"
 else
-    if [[ -z ${VUE} ]]; then
-        if [[ ${YARN} ]]; then
+    if [ -z ${VUE} ]; then
+        if [ ${YARN} ]; then
             yarn global add @vue/cli
-        elif [[ ${NPM} ]]; then
+        else
             npm install -g @vue/cli
         fi
     fi
