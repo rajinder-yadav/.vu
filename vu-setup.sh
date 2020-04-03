@@ -6,11 +6,12 @@
 # Author: Rajinder Yadav
 # Date: April 2, 2020
 # Licence: MIT
-# Version: 1.0.0
+# Version: 1.1.1
 #=============================================================================================
 NODE=$(command -v node)
 YARN=$(command -v yarn)
 NPM=$(command -v npm)
+VUE=$(command -v vue)
 
 # Download vu and update Bash startup script.
 git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
@@ -26,10 +27,12 @@ EOF
 if [[ -z ${NODE} ]]; then
     echo "WARNING! You must install Node.js"
 else
-    if [[ -z ${YARN} ]]; then
-        yarn global add @vue/cli
-    elif [[ -z ${NPM} ]]; then
-        npm install -g @vue/cli
+    if [[ -z ${VUE} ]]; then
+        if [[ -z ${YARN} ]]; then
+            yarn global add @vue/cli
+        elif [[ -z ${NPM} ]]; then
+            npm install -g @vue/cli
+        fi
     fi
 fi
 
