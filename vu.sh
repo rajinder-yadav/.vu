@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.7.0
+# Version: 1.8.0
 #=============================================================================================
 # Copy this "vu.sh" file to your home folder, then add snippet to your .bashrc file.
 #
@@ -34,6 +34,9 @@
 # vu b
 #=============================================================================================
 IDE="/usr/bin/code-insiders"
+WARM='\033[1;33m'
+HIGHLIGHT='\033[0;32m'
+NO_HIGHLIGHT='\033[0m' # No Color
 
 # export CLI_CWD=$(pwd)
 
@@ -55,6 +58,16 @@ function vu() {
             npm run build
         ;;
 
+        # Command: eject
+        eject)
+            cp -r ${HOME}/.vu/templates ${HOME}/.vurc
+            printf "${HIGHLIGHT}"
+            printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
+            printf "=> Make your custom change in these files.\n"
+            printf "=> Delete this folder to return to using the defaults.\n"
+            printf "${NO_HIGHLIGHT}"
+        ;;
+
         # Command: new
         new)
             if [ ! -d ${2} ]; then
@@ -65,7 +78,9 @@ function vu() {
                 # Need to get this working to open vscode with project.
                 # "`${IDE}` $CLI_CWD/$2"
             else
-                echo "WARNING: Folder exist! Failed to create Project."
+                printf "${WARN}"
+                printf "=> WARNING: Folder exist! Failed to create Project.\n"
+                printf "${HIGHLIGHT}"
             fi
         ;;
 
@@ -113,7 +128,7 @@ function vu() {
 
         # Command: version
         v)
-            echo "v1.7.0"
+            echo "v1.8.0"
         ;;
 
         # Default: Show usage help text.
@@ -127,18 +142,21 @@ function vu() {
 
 function ShowUsage() {
     # Show usage help.
-    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.7.0)\n\n"
+    printf "${HIGHLIGHT}"
+    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.8.0)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
-    printf "new\t<name>\t\t\tCreate Vue.js Project.\n"
-    printf "b\t\t\t\tProduction build.\n"
-    printf "g\tc <name>\t\tGenerate Component under \"components\" folder.\n"
-    printf "g\tv <name>\t\tGenerate Component under \"views\" folder.\n"
-    printf "g\t<folder> <name>\t\tGenerate Component under declared folder.\n"
-    printf "s\t\t\t\tRun development Server.\n"
-    printf "v\t\t\t\tShow version.\n\n"
+    printf "new\t<name>\t\t\tCreate Vue.js Project\n"
+    printf "b\t\t\t\tProduction build\n"
+    printf "g\tc <name>\t\tGenerate Component under \"components\" folder\n"
+    printf "g\tv <name>\t\tGenerate Component under \"views\" folder\n"
+    printf "g\t<folder> <name>\t\tGenerate Component under declared folder\n"
+    printf "s\t\t\t\tRun development Server\n"
+    printf "v\t\t\t\tShow version\n\n"
+    printf "eject\t\t\t\tEject code generation Templates\n"
     printf "upgrade\t\t\t\tUpgrade vu script\n\n"
+    printf "${NO_HIGHLIGHT}"
 }
 
 
@@ -150,15 +168,19 @@ function GenerateComponent() {
     CSS_EXT=${3}
 
     if [ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]; then
-        echo "Creating Component folder"
+        printf "${HIGHLIGHT}"
+        printf "=> Creating Component folder.\n"
         mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
-        echo "Creating Component files"
+        printf "=> Creating Component files.\n"
+        printf "${NO_HIGHLIGHT}"
         touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
 
         GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
         GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
     else
-        echo "WARNING: Component folder exist, no operation was performed."
+        printf "${WARM}"
+        printf "=> WARNING: Component folder exist, no operation was performed.\n"
+        printf "${NO_HIGHLIGHT}"
     fi
 }
 
@@ -169,13 +191,18 @@ COMPONENT_NAME=${2}
 CSS_EXT=${3}
 
 # Generate Class file.
-cat >"./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
-import { Component, Prop, Vue } from "vue-property-decorator";
+if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/component.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+# cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
+# import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component
-export default class ${COMPONENT_NAME} extends Vue {
-}
-EOF
+# @Component
+# export default class ${COMPONENT_NAME} extends Vue {
+# }
+# EOF
+fi
 }
 
 
@@ -185,12 +212,24 @@ COMPONENT_NAME=${2}
 CSS_EXT=${3}
 
 # Generate Template file.
-cat >"./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
-<template>
-  <div></div>
-</template>
+if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/template.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+# cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
+# <template>
+#   <div></div>
+# </template>
 
-<script lang="ts" src="./${COMPONENT_NAME}.ts" />
-<style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
-EOF
+# <script lang="ts" src="./${COMPONENT_NAME}.ts" />
+# <style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
+# EOF
+fi
+
+# Generate Style file.
+if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+fi
 }
