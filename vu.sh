@@ -128,7 +128,8 @@ function ShowUsage() {
     printf "g\tc <name>\t\tGenerate Component under \"components\" folder.\n"
     printf "g\tv <name>\t\tGenerate Component under \"views\" folder.\n"
     printf "g\t<folder> <name>\t\tGenerate Component under declared folder.\n"
-    printf "s\t\t\t\tRun development Server.\n\n"
+    printf "s\t\t\t\tRun development Server.\n"
+    printf "v\t\t\t\tShow version.\n\n"
 }
 
 
