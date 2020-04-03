@@ -50,23 +50,15 @@ There is no advantage since TypeScript is a superset of ECMAScript and future pr
 
 Run the following multi-line command in your terminal.
 
-```sh
+```pre
 curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
 -o vu-setup.sh; bash ./vu-setup.sh
 ```
 
 The "__vu__" CLI make use of Vue.js CLI to create a new project, make sure to install it.
 
-Using NPM:
-
 ```sh
 npm install -g @vue/cli
-```
-
-Using YARN:
-
-```sh
-yarn global add @vue/cli
 ```
 
 ### Verifying
