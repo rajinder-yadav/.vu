@@ -8,6 +8,7 @@ A Vue.js utility for TypeScript projects.
 
 - [The missing Vue.js CLI for TypeScript 😍](#the-missing-vuejs-cli-for-typescript)
   - [Introduction](#introduction)
+    - [Customizable code generation](#customizable-code-generation)
   - [Setup](#setup)
     - [Verifying](#verifying)
   - [Setting up manually](#setting-up-manually)
@@ -19,6 +20,10 @@ A Vue.js utility for TypeScript projects.
     - [Run dev Server](#run-dev-server)
     - [Build release](#build-release)
     - [Get Version](#get-version)
+    - [Upgrading vu](#upgrading-vu)
+    - [Customizing generated code](#customizing-generated-code)
+      - [Template files](#template-files)
+      - [Template variable](#template-variable)
 
 <!-- /code_chunk_output -->
 
@@ -40,6 +45,10 @@ The Fix
 - Generate files and skeleton code, code snippets are good but gets repetitive.
 
 ![image](images/folder.png)
+
+### Customizable code generation
+
+If the default generated code does not work for you, you can eject their templates and modify to suite you own needs. See [Customizing generated code](#customizing-generated-code) for more details.
 
 Vue CLI is not enough, so I coded a Bash script to extend it, this turned into the "vu" CLI.
 If you find it useful, let me know on twitter.
@@ -72,21 +81,25 @@ curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
 
 From the terminal, type "__vu__" and press enter. You should see the following output.
 
-```sh
+```pre
 $ vu
 
-The missing Vue.js CLI for TypeScript 😍 (v1.7.0)
+The missing Vue.js CLI for TypeScript 😍 (v1.8.0)
 
 Usage: vu <command> [options]
 
 CMD     Options                 Description
 ===     =======                 ===========
-new     <name>                  Create Vue.js Project.
-b                               Production build.
-g       c <name>                Generate Component under "components" folder.
-g       v <name>                Generate Component under "views" folder.
-g       <folder> <name>         Generate Component under declared folder.
-s                               Run development Server.```
+new     <name>                  Create Vue.js Project
+b                               Production build
+g       c <name>                Generate Component under "components" folder
+g       v <name>                Generate Component under "views" folder
+g       <folder> <name>         Generate Component under declared folder
+s                               Run development Server
+v                               Show version
+
+eject                           Eject code generation Templates
+upgrade                         Upgrade vu script
 ```
 
 ## Setting up manually
@@ -116,22 +129,22 @@ npm install -g @vue/cli
 
 ## Usage
 
+You can for the most part work with the vu CLI exclusively.
+
 ### Create a Project
 
-- Creating a new Vue.js project "hello-world".
-- Run development server.
+Create a new Vue.js project named "hello-world".
 
 __Note__: You will automatically be placed inside the new project folder.
 
 ```sh
 vu new hello-world
-vu s
 ```
 
 ### Generate a Component
 
-- Generating a Component called Dashboard.
-- Generated code will be place in the subfolder, "__src/components/Dashboard__".
+Generate a Component called Dashboard.
+Generated code will be place in the subfolder, "__src/components/Dashboard__".
 
 ```sh
 vu g c Dashboard
@@ -139,8 +152,8 @@ vu g c Dashboard
 
 ### Generate a View Component
 
-- Generating a View Component called Home.
-- Generated code will be place in the subfolder, "__src/views/Dashboard__".
+Generate a View Component called Home.
+Generated code will be place in the subfolder, "__src/views/Dashboard__".
 
 ```sh
 vu g v Home
@@ -148,7 +161,7 @@ vu g v Home
 
 ### Generate Component in another folder
 
-- Generating a Component called Login under subfolder, "__src/Admin/Login__".
+Generate a Component called Login under subfolder, "__src/Admin/Login__".
 
 ```sh
 vu g Admin Login
@@ -156,7 +169,7 @@ vu g Admin Login
 
 ### Run dev Server
 
-- Starting the development server.
+Start the development server.
 
 ```sh
 vu s
@@ -164,7 +177,7 @@ vu s
 
 ### Build release
 
-- Doing a production build.
+Create a production build to deployment.
 
 ```sh
 vu b
@@ -172,8 +185,45 @@ vu b
 
 ### Get Version
 
-- Display vu CLI version.
+Display vu CLI version.
 
 ```sh
 vu v
 ```
+
+### Upgrading vu
+
+This will update the vu CLI.
+
+```sh
+vu upgrade
+```
+
+### Customizing generated code
+
+To customize code generation, you must first eject the template files.
+
+```sh
+vu eject
+```
+
+The ejected template files can be found under the subfolder "__.vurc__", located under your home folder.
+
+#### Template files
+
+There are 3 files:
+
+- component.vu
+- template.vu
+- style.vu
+
+If you want to return to using the default generated file, just delete the above mentioned files or delete the "__.vurc__" subfolder.
+
+#### Template variable
+
+There are currently two variables, who are substitued with their value.
+
+Variable|Meaning
+-|-
+COMPONENT_NAME|Name of the Component.
+CSS_EXT|File extension for the CSS style file.
