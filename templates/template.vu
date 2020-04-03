@@ -1,0 +1,6 @@
+<template>
+  <div></div>
+</template>
+
+<script lang="ts" src="./${COMPONENT_NAME}.ts" />
+<style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
