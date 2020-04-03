@@ -6,17 +6,24 @@
 # Author: Rajinder Yadav
 # Date: April 2, 2020
 # Licence: MIT
-# Version: 1.1.3
+# Version: 1.1.4
 #=============================================================================================
 NODE=$(command -v node)
 NPM=$(command -v npm)
 VUE=$(command -v vue)
 GIT=$(command -v git)
 
+PLATFORM=$(uname -a)
+BASH_PROFILE="${HOME}/.bashrc"
+
+if [[ ${PLATFORM} =~ *"Darwin"* ]]; then
+    BASH_PROFILE="${HOME}/.bash_profile"
+fi
+
 if [ -z ${GIT} ]; then
     # Download vu and update Bash startup script.
     git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
-    cat >>"${HOME}/.bashrc" <<-EOF
+    cat >>"${BASH_PROFILE}" <<-EOF
 
 # vu CLI for Vue.js
 if [ -f "${HOME}/.vu/vu.sh" ]; then
