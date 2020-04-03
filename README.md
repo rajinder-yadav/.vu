@@ -18,6 +18,7 @@ A Vue.js utility for TypeScript projects.
     - [Generate Component in another folder](#generate-component-in-another-folder)
     - [Run dev Server](#run-dev-server)
     - [Build release](#build-release)
+    - [Get Version](#get-version)
 
 <!-- /code_chunk_output -->
 
@@ -38,7 +39,7 @@ If you find it useful, let me know on twitter.
 
 You can follow me: [@dev_mentor](https://twitter.com/dev_mentor)
 
-__Setup TIP__
+__TIP__
 
 When creating a TypeScript project, unselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
 
