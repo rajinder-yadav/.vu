@@ -1,4 +1,3 @@
-
 ## 1.6.3 (2020-04-02)
 
 ### Features
@@ -6,6 +5,7 @@
 - Added LICENSE
 - Created CHANGELOG.md
 - Updated README.md, new Introduction secion and images.
+- Updated setup script to check and install Vue.js CLI.
 
 ### Fixes
 
