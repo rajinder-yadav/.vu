@@ -24,26 +24,33 @@ A Vue.js utility for TypeScript projects.
 
 ## Introduction
 
-If you're like me and code Vue.js using TypeScript, then you will find using "__vu__" will boost your productivity. It adds some convenience sane shortcuts and generates codes like Angular CLI.
+If you're like me and code Vue.js using TypeScript, then you will find using "__vu__" will boost your productivity. It adds "sane" convenience shortcuts and generates codes like Angular CLI.
 
-I dislike everything in one single file. Seperation of concern is a better design choice, it is cleaner as the code grows.
+The Problem
 
-I place Code for the Component Class, Template and Style in their own separate files.
+- The Vue CLI puts everything into a single file and fails to generate code.
 
-I got tired of creating the files and sub-folder manually and then using snippets to generate the source code. This is when "vu" was born, it does all this with easy to use commands.
+So I got tired of creating the files and sub-folder manually and then using snippets to generate the source code. This is when "vu" was born, it does all this with easy to use commands.
+
+The Fix
+
+- Separation of concern is a smart design choice, it is cleaner as the code grows.
+- Create separate files for Component Class, Template and Styles.
+  - Co-locate Component files under their own subfolder.
+- Generate files and skeleton code, code snippets are good but gets repetitive.
 
 ![image](images/folder.png)
 
-Vue CLI is not enough, so I coded a Bash script to extend it, this turned into "vu".
+Vue CLI is not enough, so I coded a Bash script to extend it, this turned into the "vu" CLI.
 If you find it useful, let me know on twitter.
 
 You can follow me: [@dev_mentor](https://twitter.com/dev_mentor)
 
 __TIP__
 
-When creating a TypeScript project, unselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
+When creating a TypeScript project, deselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
 
-There is no advantage since TypeScript is a superset of ECMAScript and future proof.
+There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
 
 ![image](images/vue-ts.png)
 
