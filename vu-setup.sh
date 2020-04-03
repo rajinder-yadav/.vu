@@ -11,5 +11,5 @@ if [ -f "${HOME}/.vu/vu.sh" ]; then
 fi
 EOF
 
-rm vu-setup.sh
 popd
+rm vu-setup.sh
