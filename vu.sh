@@ -103,12 +103,20 @@ function vu() {
             npm run serve
         ;;
 
+        # Command: upgrade
+        upgrade)
+            # Upgrade vu script.
+            pushd ${HOME}/.vu &> /dev/null
+            git pull
+            popd &> /dev/null
+        ;;
+
         # Command: version
         v)
             echo "v1.7.0"
         ;;
 
-        # Default: Show usage help text
+        # Default: Show usage help text.
         *)
             ShowUsage
         ;;
@@ -130,12 +138,13 @@ function ShowUsage() {
     printf "g\t<folder> <name>\t\tGenerate Component under declared folder.\n"
     printf "s\t\t\t\tRun development Server.\n"
     printf "v\t\t\t\tShow version.\n\n"
+    printf "upgrade\t\t\t\tUpgrade vu script\n\n"
 }
 
 
 function GenerateComponent() {
     # Creat Component.
-    # Default Component folder.cd
+    # Default Component folder.
     FOLDER=${1}
     COMPONENT_NAME=${2}
     CSS_EXT=${3}
