@@ -1,3 +1,13 @@
+## 1.8.0 (2020-04-03)
+
+### Features
+
+- Add custom code generation Template support.
+- Colourized output.
+- README new Template customization how to.
+
+---
+
 ## 1.7.0 (2020-04-03)
 
 ### Features
