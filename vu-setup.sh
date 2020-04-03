@@ -16,7 +16,7 @@ GIT=$(command -v git)
 PLATFORM=$(uname -a)
 BASH_PROFILE="${HOME}/.bashrc"
 
-if [[ ${PLATFORM} =~ *"Darwin"* ]]; then
+if [[ ${OSTYPE} =~ "darwin" || ${PLATFORM} =~ "Mac" || ${PLATFORM} =~ "Darwin" ]]; then
     BASH_PROFILE="${HOME}/.bash_profile"
 fi
 
