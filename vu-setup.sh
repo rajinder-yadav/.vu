@@ -20,7 +20,7 @@ if [[ ${PLATFORM} =~ *"Darwin"* ]]; then
     BASH_PROFILE="${HOME}/.bash_profile"
 fi
 
-if [ -z ${GIT} ]; then
+if [ ! -z ${GIT} ]; then
     # Download vu and update Bash startup script.
     git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
     cat >>"${BASH_PROFILE}" <<-EOF
