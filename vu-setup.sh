@@ -69,13 +69,13 @@ if [ -f "${HOME}/.vu/vu.sh" ]; then
     . "${HOME}/.vu/vu.sh"
 fi
 EOF
-    fi
 
-    if [ $? -eq 0 ]; then
-        echo "=> SUCCESS: Bash init script updated."
-    else
-        echo "=> ERROR: Bash init script update failed."
-        exit 105
+        if [ $? -eq 0 ]; then
+            echo "=> SUCCESS: Bash init script updated."
+        else
+            echo "=> ERROR: Bash init script update failed."
+            exit 105
+        fi
     fi
 
     echo "=> SUCCESS: vu CLI installed."
