@@ -36,7 +36,7 @@ elif [ -d ${HOME}/.vu ]; then
     popd &> /dev/null
 else
     # Download vu and update Bash startup script.
-    git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
+    git clone git@github.com:rajinder-yadav/vu.git ${HOME}/.vu
     cat >> "${BASH_PROFILE}" <<-EOF
 
 # vu CLI for Vue.js
