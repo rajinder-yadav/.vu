@@ -5,33 +5,8 @@
 # Date: March 28, 2020
 # Licence: MIT
 # Version: 1.8.0
-#=============================================================================================
-# Copy this "vu.sh" file to your home folder, then add snippet to your .bashrc file.
 #
-# # User defined functionss for Vue.js
-# if [ -f "${HOME}/.vu/vu.sh" ]; then
-#     . "${HOME}/.vu/vu.sh"
-# fi
-#=============================================================================================
-# README
-#
-# Creating a new Vue.js project
-# vu new hello-world
-#
-# Generating a Component called Dashboard. Generated code will be place in the subfolder, "src/components/Dashboard".
-# vu g c Dashboard
-#
-# Generating a View Component called Home. Generated code will be place in the subfolder, "src/views/Dashboard".
-# vu g v Home
-#
-# Generating a Component called Login under subfolder, "src/Admin/Login".
-# vu g Admin Login
-#
-# Starting the development server.
-# vu s
-#
-# Doing a production build.
-# vu b
+# Github: https://github.com/rajinder-yadav/.vu
 #=============================================================================================
 IDE="/usr/bin/code-insiders"
 WARM='\033[1;33m'
