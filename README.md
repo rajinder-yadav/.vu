@@ -63,7 +63,7 @@ There is no advantage using both, since TypeScript is a super-set of ECMAScript 
 
 ![image](images/vue-ts.png)
 
-## Setup
+## Installing
 
 Before running the install script below, make sure you have the following installed:
 
