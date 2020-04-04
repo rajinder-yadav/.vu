@@ -12,6 +12,7 @@ A Vue.js utility for TypeScript projects.
   - [Installing](#installing)
     - [Verifying](#verifying)
   - [Setting up manually](#setting-up-manually)
+  - [Commands](#commands)
   - [Usage](#usage)
     - [Create a Project](#create-a-project)
         - [Deselect Babel](#deselect-babel)
@@ -119,6 +120,23 @@ The "__vu__" CLI makes use of Vue.js CLI to create a new project, make sure to i
 ```sh
 npm install -g @vue/cli
 ```
+
+## Commands
+
+Syntax: __vu \<command> [options]__
+
+Command|Shortcut|Operation
+-|-|-
+[New](#create-a-project)|__new__|Create and new project.
+[Build](#build-release)|__b__|Production build.
+Generate|__g__|Generate Code in a sub-folder.
+[Generate Component](#generate-a-component)|__g c__|Code placed under "__components__" sub-folder.
+[Generate View](#generate-a-view-component)|__g v__|Code placed under "__views__" sub-folder.
+[Generate sub-folder](#generate-component-in-another-folder)|__g \<name>__|Code placed under "__\<name>__" sub-folder.
+[Server](#run-dev-server)|__s__|Start development server.
+[Version](#get-version)|__v__|Display version.
+[eject](#customizing-generated-code)|__eject__|Eject code generation Templatess.
+[upgrade](#upgrading-vu)|__upgrade__|Update vu CLI.
 
 ## Usage
 
