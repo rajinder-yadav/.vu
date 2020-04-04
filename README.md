@@ -132,7 +132,7 @@ Command|Shortcut|Operation
 Generate|__g__|Generate Code in a sub-folder.
 [Generate Component](#generate-a-component)|__g c__|Code placed under "__components__" sub-folder.
 [Generate View](#generate-a-view-component)|__g v__|Code placed under "__views__" sub-folder.
-[Generate sub-folder](#generate-component-in-another-folder)|__g \<name>__|Code placed under "__\<name>__" sub-folder.
+[Generate sub-folder](#generate-component-in-another-folder)|__g \<folder>__|Code placed under "__\<folder>__" sub-folder.
 [Server](#run-dev-server)|__s__|Start development server.
 [Version](#get-version)|__v__|Display version.
 [eject](#customizing-generated-code)|__eject__|Eject code generation Templatess.
