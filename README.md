@@ -9,11 +9,12 @@ A Vue.js utility for TypeScript projects.
 - [The missing Vue.js CLI for TypeScript 😍](#the-missing-vuejs-cli-for-typescript)
   - [Introduction](#introduction)
     - [Customizable code generation](#customizable-code-generation)
-  - [Setup](#setup)
+  - [Installing](#installing)
     - [Verifying](#verifying)
   - [Setting up manually](#setting-up-manually)
   - [Usage](#usage)
     - [Create a Project](#create-a-project)
+        - [Deselect Babel](#deselect-babel)
     - [Generate a Component](#generate-a-component)
     - [Generate a View Component](#generate-a-view-component)
     - [Generate Component in another folder](#generate-component-in-another-folder)
@@ -54,14 +55,6 @@ Vue CLI is not enough, so I coded a Bash script to extend it, this turned into t
 If you find it useful, let me know on twitter.
 
 You can follow me: [@dev_mentor](https://twitter.com/dev_mentor)
-
-__TIP__
-
-When creating a TypeScript project, deselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
-
-There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
-
-![image](images/vue-ts.png)
 
 ## Installing
 
@@ -135,11 +128,19 @@ You can for the most part work with the vu CLI exclusively.
 
 Create a new Vue.js project named "hello-world".
 
-__Note__: You will automatically be placed inside the new project folder.
-
 ```sh
 vu new hello-world
 ```
+
+Once the project has been created, you will automatically be placed inside the new project root folder.
+
+##### Deselect Babel
+
+When creating a TypeScript project, deselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
+
+There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
+
+![image](images/vue-ts.png)
 
 ### Generate a Component
 
