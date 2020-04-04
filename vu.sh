@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.8.1
+# Version: 1.9.0
 #
 # Github: https://github.com/rajinder-yadav/.vu
 #=============================================================================================
@@ -35,17 +35,36 @@ function vu() {
 
         # Command: eject
         eject)
-            cp -r ${HOME}/.vu/templates ${HOME}/.vurc
-            printf "${HIGHLIGHT}"
-            printf "=> Creating Template folder\n"
-            printf "=> Creating Template files\n"
-            printf "  => ${HOME}/.vurc/component.vu\n"
-            printf "  => ${HOME}/.vurc/style.vu\n"
-            printf "  => ${HOME}/.vurc/template.vu\n"
-            printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
-            printf "=> Make your custom change in these files.\n"
-            printf "=> Delete this folder to return to using the defaults.\n"
-            printf "${NO_HIGHLIGHT}"
+            if [ -d ${HOME}/.vurc ]; then
+                printf "${WARN}"
+                printf "=> WARNING: Template folder exists.\n"
+                printf "=> WARNING: Ejecting will destory old changes.\n"
+                read -r -p "Do you want to continue? [y/N] " response
+                case ${response} in
+                    [yY][eE][sS]|[yY])
+                        EJECT="yes"
+                        ;;
+                    *)
+                        EJECT="no"
+                        printf "=> Eject operation cancelled.\n"
+                        ;;
+                esac
+                printf "${NO_HIGHLIGHT}"
+            fi
+
+            if [ ${EJECT} == "yes" ]; then
+                cp -r ${HOME}/.vu/templates ${HOME}/.vurc
+                printf "${HIGHLIGHT}"
+                printf "=> Creating Template folder\n"
+                printf "=> Creating Template files\n"
+                printf "  => ${HOME}/.vurc/component.vu\n"
+                printf "  => ${HOME}/.vurc/style.vu\n"
+                printf "  => ${HOME}/.vurc/template.vu\n"
+                printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
+                printf "=> Make your custom change in these files.\n"
+                printf "=> Delete this folder to return to using the defaults.\n"
+                printf "${NO_HIGHLIGHT}"
+            fi
         ;;
 
         # Command: new
@@ -109,7 +128,7 @@ function vu() {
 
         # Command: version
         v)
-            echo "v1.8.1"
+            echo "v1.9.0"
         ;;
 
         # Default: Show usage help text.
@@ -124,7 +143,7 @@ function vu() {
 function ShowUsage() {
     # Show usage help.
     printf "${HIGHLIGHT}"
-    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.8.1)\n\n"
+    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.0)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
@@ -158,6 +177,7 @@ function GenerateComponent() {
 
         GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
         GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
+        GenerateStyleFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
     else
         printf "${WARM}"
         printf "=> WARNING: Component folder exist, no operation was performed.\n"
@@ -216,6 +236,13 @@ function GenerateTemplateFile() {
 
     printf "${HIGHLIGHT}"
     printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue\n"
+}
+
+
+function GenerateStyleFile() {
+    FOLDER=${1}
+    COMPONENT_NAME=${2}
+    CSS_EXT=${3}
 
     # Generate Style file.
     if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
