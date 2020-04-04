@@ -15,7 +15,7 @@ A Vue.js utility for TypeScript projects.
   - [Commands](#commands)
   - [Usage](#usage)
     - [Create a Project](#create-a-project)
-        - [Deselect Babel](#deselect-babel)
+      - [Deselect Babel](#deselect-babel)
     - [Generate a Component](#generate-a-component)
     - [Generate a View Component](#generate-a-view-component)
     - [Generate Component in another folder](#generate-component-in-another-folder)
@@ -153,7 +153,7 @@ vu new hello-world
 
 Once the project has been created, you will automatically be placed inside the new project root folder.
 
-##### Deselect Babel
+#### Deselect Babel
 
 When creating a TypeScript project, deselect Bable and just select Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
 
