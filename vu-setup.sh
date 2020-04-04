@@ -20,25 +20,33 @@ if [[ ${OSTYPE} =~ "darwin" || ${PLATFORM} =~ "Mac" || ${PLATFORM} =~ "Darwin" ]
     BASH_PROFILE="${HOME}/.bash_profile"
 fi
 
-if [[ ! -z ${GIT} ]]; then
+if [ -z ${NODE} ]; then
+    echo "WARNING! You must install Node.js"
+elif [ -z ${VUE} ]; then
+    # Install Vue.js CLI dependency.
+    npm install -g @vue/cli
+fi
+
+if [ -z ${GIT} ]; then
+    echo "WARNING! You must install Git."
+elif [ -d ${HOME}/.vu ]; then
+    # Update vu install.
+    pushd ${HOME}/.vu
+    git pull
+    popd
+else
     # Download vu and update Bash startup script.
     git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
-    cat >>"${BASH_PROFILE}" <<-EOF
+    cat >> "${BASH_PROFILE}" <<-EOF
 
 # vu CLI for Vue.js
 if [ -f "${HOME}/.vu/vu.sh" ]; then
     . "${HOME}/.vu/vu.sh"
 fi
 EOF
-else
-    echo "WARNING! You must install Git"
-fi
 
-# Install Vue.js CLI dependency.
-if [ -z ${NODE} ]; then
-    echo "WARNING! You must install Node.js"
-elif [ -z ${VUE} ]; then
-    npm install -g @vue/cli
+echo "SUCCESS: vu CLI installed."
+echo "Reload bash config with, \"source ${BASH_PROFILE}\", or open a new terminal."
 fi
 
 # Place this at the end of the file.
