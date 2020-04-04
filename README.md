@@ -21,7 +21,7 @@ A Vue.js utility for TypeScript projects.
     - [Generate Component in another folder](#generate-component-in-another-folder)
     - [Run dev Server](#run-dev-server)
     - [Build release](#build-release)
-    - [Get Version](#get-version)
+    - [Show Version](#show-version)
     - [Upgrading vu](#upgrading-vu)
     - [Customizing generated code](#customizing-generated-code)
       - [Template files](#template-files)
@@ -78,7 +78,7 @@ From the terminal, type "__vu__" and press enter. You should see the following o
 ```pre
 $ vu
 
-The missing Vue.js CLI for TypeScript 😍 (v1.8.0)
+The missing Vue.js CLI for TypeScript 😍 (v1.8.1)
 
 Usage: vu <command> [options]
 
@@ -104,12 +104,13 @@ Clone project "__vu__" under your home folder.
 
 ```sh
 cd ~
-git clone git@github.com:rajinder-yadav/.vu.git
+git clone git@github.com:rajinder-yadav/vu.git ${HOME}/.vu
 ```
 
-Next add the code snippet below to "__~/.bashrc__" or "__~/.profile__".
+Next add the code snippet below to "__~/.bashrc__" or "__~/.bash_profile__".
 
 ```sh
+# Enable vu CLI script for Vue.js
 if [ -f "${HOME}/.vu/vu.sh" ]; then
     . "${HOME}/.vu/vu.sh"
 fi
@@ -134,7 +135,7 @@ Generate|__g__|Generate Code in a sub-folder.
 [Generate View](#generate-a-view-component)|__g v__|Code placed under "__views__" sub-folder.
 [Generate sub-folder](#generate-component-in-another-folder)|__g \<folder>__|Code placed under "__\<folder>__" sub-folder.
 [Server](#run-dev-server)|__s__|Start development server.
-[Version](#get-version)|__v__|Display version.
+[Version](#show-version)|__v__|Display version.
 [eject](#customizing-generated-code)|__eject__|Eject code generation Templatess.
 [upgrade](#upgrading-vu)|__upgrade__|Update vu CLI.
 
@@ -154,7 +155,7 @@ Once the project has been created, you will automatically be placed inside the n
 
 ##### Deselect Babel
 
-When creating a TypeScript project, deselect Bable and just choose Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
+When creating a TypeScript project, deselect Bable and just select Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
 
 There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
 
@@ -163,19 +164,51 @@ There is no advantage using both, since TypeScript is a super-set of ECMAScript 
 ### Generate a Component
 
 Generate a Component called Dashboard.
-Generated code will be place in the subfolder, "__src/components/Dashboard__".
+The generated code is placed in the subfolder, "__src/components/Dashboard__".
 
 ```sh
 vu g c Dashboard
 ```
 
+The output to the terminal should looks like:
+
+```sh
+=> Creating Component folder.
+=> Creating Component files.
+  => Created: ./src/components/Dashboard/Dashboard.ts
+  => Created: ./src/components/Dashboard/Dashboard.vue
+  => Created: ./src/components/Dashboard/Dashboard.stylus
+```
+
+A check will be made before creating the folder and files, if the folder exist  the following error is displayed.
+
+```sh
+=> WARNING: Component folder exist, no operation was performed.
+```
+
 ### Generate a View Component
 
 Generate a View Component called Home.
-Generated code will be place in the subfolder, "__src/views/Dashboard__".
+The generated code is placed in the subfolder, "__src/views/Dashboard__".
 
 ```sh
 vu g v Home
+```
+
+The output to the terminal should looks like:
+
+```sh
+=> Creating Component folder.
+=> Creating Component files.
+  => Created: ./src/views/Home/Home.ts
+  => Created: ./src/views/Home/Home.vue
+  => Created: ./src/views/Home/Home.stylus
+```
+
+A check will be made before creating the folder and files, if the folder exist  the following error is displayed.
+
+```sh
+=> WARNING: Component folder exist, no operation was performed.
 ```
 
 ### Generate Component in another folder
@@ -184,6 +217,22 @@ Generate a Component called Login under subfolder, "__src/Admin/Login__".
 
 ```sh
 vu g Admin Login
+```
+
+The output to the terminal should looks like:
+
+```sh
+=> Creating Component folder.
+=> Creating Component files.
+  => Created: ./src/Admin/Login/Login.ts
+  => Created: ./src/Admin/Login/Login.vue
+  => Created: ./src/Admin/Login/Login.stylus
+```
+
+A check will be made before creating the folder and files, if the folder exist  the following error is displayed.
+
+```sh
+=> WARNING: Component folder exist, no operation was performed.
 ```
 
 ### Run dev Server
@@ -202,7 +251,7 @@ Create a production build to deployment.
 vu b
 ```
 
-### Get Version
+### Show Version
 
 Display vu CLI version.
 
@@ -228,9 +277,22 @@ vu eject
 
 The ejected template files can be found under the subfolder "__.vurc__", located under your home folder.
 
+The output to the terminal should looks like:
+
+```sh
+=> Creating Template folder
+=> Creating Template files
+  => /home/yadav/.vurc/component.vu
+  => /home/yadav/.vurc/style.vu
+  => /home/yadav/.vurc/template.vu
+=> SUCCESS: Template files ejected folder: /home/yadav/.vurc
+=> Make your custom change in these files.
+=> Delete this folder to return to using the defaults.
+```
+
 #### Template files
 
-There are 3 files:
+There are 3 files, whatever you place inside will show up in the generated code.
 
 - component.vu
 - template.vu
