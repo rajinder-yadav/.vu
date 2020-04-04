@@ -31,9 +31,9 @@ if [ -z ${GIT} ]; then
     echo "WARNING! You must install Git."
 elif [ -d ${HOME}/.vu ]; then
     # Update vu install.
-    pushd ${HOME}/.vu
+    pushd ${HOME}/.vu &> /dev/null
     git pull
-    popd
+    popd &> /dev/null
 else
     # Download vu and update Bash startup script.
     git clone git@github.com:rajinder-yadav/.vu.git ${HOME}/.vu
