@@ -126,7 +126,7 @@ npm install -g @vue/cli
 
 Syntax: __vu \<command> [options]__
 
-Command|Shortcut|Operation
+Description|Command|Operation
 -|-|-
 [New](#create-a-project)|__new__|Create and new project.
 [Build](#build-release)|__b__|Production build.
