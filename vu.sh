@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.8.0
+# Version: 1.8.1
 #
 # Github: https://github.com/rajinder-yadav/.vu
 #=============================================================================================
@@ -103,7 +103,7 @@ function vu() {
 
         # Command: version
         v)
-            echo "v1.8.0"
+            echo "v1.8.1"
         ;;
 
         # Default: Show usage help text.
@@ -118,7 +118,7 @@ function vu() {
 function ShowUsage() {
     # Show usage help.
     printf "${HIGHLIGHT}"
-    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.8.0)\n\n"
+    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.8.1)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
@@ -161,15 +161,16 @@ function GenerateComponent() {
 
 
 function GenerateClassFile() {
-FOLDER=${1}
-COMPONENT_NAME=${2}
-CSS_EXT=${3}
+    FOLDER=${1}
+    COMPONENT_NAME=${2}
+    CSS_EXT=${3}
 
-# Generate Class file.
-if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/component.vu ]]; then
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
-else
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+    # Generate Class file.
+    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/component.vu ]]; then
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+    else
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+
 # cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
 # import { Component, Prop, Vue } from "vue-property-decorator";
 
@@ -177,20 +178,25 @@ else
 # export default class ${COMPONENT_NAME} extends Vue {
 # }
 # EOF
-fi
+
+    fi
+    printf "${HIGHLIGHT}"
+    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts\n"
+    printf "${NO_HIGHLIGHT}"
 }
 
 
 function GenerateTemplateFile() {
-FOLDER=${1}
-COMPONENT_NAME=${2}
-CSS_EXT=${3}
+    FOLDER=${1}
+    COMPONENT_NAME=${2}
+    CSS_EXT=${3}
 
-# Generate Template file.
-if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/template.vu ]]; then
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
-else
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+    # Generate Template file.
+    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/template.vu ]]; then
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+    else
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+
 # cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
 # <template>
 #   <div></div>
@@ -199,12 +205,19 @@ else
 # <script lang="ts" src="./${COMPONENT_NAME}.ts" />
 # <style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
 # EOF
-fi
 
-# Generate Style file.
-if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
-else
-    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
-fi
+    fi
+
+    printf "${HIGHLIGHT}"
+    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue\n"
+
+    # Generate Style file.
+    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+    else
+        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+    fi
+
+    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}\n"
+    printf "${NO_HIGHLIGHT}"
 }
