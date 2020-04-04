@@ -78,7 +78,7 @@ From the terminal, type "__vu__" and press enter. You should see the following o
 ```pre
 $ vu
 
-The missing Vue.js CLI for TypeScript 😍 (v1.8.1)
+The missing Vue.js CLI for TypeScript 😍 (v1.9.0)
 
 Usage: vu <command> [options]
 
