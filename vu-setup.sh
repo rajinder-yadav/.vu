@@ -58,6 +58,10 @@ else
         echo "=> ERROR: vu project download failed."
         exit 104
     fi
+
+    # Only update Bash init if snippet does not exist.
+    grep -P "{HOME}/.vu/vu.sh" ~/.bashrc &>/dev/null
+    if [ $? -ne 0 ]; then
     cat >> "${BASH_PROFILE}" <<-EOF
 
 # Enable vu CLI script for Vue.js
@@ -65,16 +69,17 @@ if [ -f "${HOME}/.vu/vu.sh" ]; then
     . "${HOME}/.vu/vu.sh"
 fi
 EOF
+    fi
 
-if [ $? -eq 0 ]; then
-    echo "=> SUCCESS: Bash init script updated."
-else
-    echo "=> ERROR: Bash init script update failed."
-    exit 105
-fi
+    if [ $? -eq 0 ]; then
+        echo "=> SUCCESS: Bash init script updated."
+    else
+        echo "=> ERROR: Bash init script update failed."
+        exit 105
+    fi
 
-echo "SUCCESS: vu CLI installed."
-echo "Reload bash config with, \"source ${BASH_PROFILE}\", or open a new terminal."
+    echo "SUCCESS: vu CLI installed."
+    echo "Reload bash config with, \"source ${BASH_PROFILE}\", or open a new terminal."
 fi
 
 # Place this at the end of the file.
