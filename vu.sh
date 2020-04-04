@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.9.0
+# Version: 1.9.1
 #
 # Github: https://github.com/rajinder-yadav/.vu
 #=============================================================================================
@@ -130,7 +130,7 @@ function vu() {
 
         # Command: version
         v)
-            echo "v1.9.0"
+            echo "v1.9.1"
         ;;
 
         # Default: Show usage help text.
@@ -145,7 +145,7 @@ function vu() {
 function ShowUsage() {
     # Show usage help.
     printf "${HILIGHT_ON}"
-    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.0)\n\n"
+    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.1)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
     printf "===\t=======\t\t\t===========\n"
