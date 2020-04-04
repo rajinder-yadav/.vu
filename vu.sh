@@ -104,6 +104,7 @@ function vu() {
             pushd ${HOME}/.vu &> /dev/null
             git pull
             popd &> /dev/null
+            source ${HOME}/.vu/vu.sh
         ;;
 
         # Command: version
