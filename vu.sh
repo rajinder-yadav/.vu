@@ -35,6 +35,7 @@ function vu() {
 
         # Command: eject
         eject)
+            EJECT="yes"
             if [ -d ${HOME}/.vurc ]; then
                 printf "${WARN_ON}"
                 printf "=> WARNING: Template folder exists.\n"
