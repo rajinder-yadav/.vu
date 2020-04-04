@@ -78,8 +78,8 @@ EOF
         exit 105
     fi
 
-    echo "SUCCESS: vu CLI installed."
-    echo "Reload bash config with, \"source ${BASH_PROFILE}\", or open a new terminal."
+    echo "=> SUCCESS: vu CLI installed."
+    echo "=> Reload Bash config with, \"source ${BASH_PROFILE}\", or open a new terminal."
 fi
 
 # Place this at the end of the file.
