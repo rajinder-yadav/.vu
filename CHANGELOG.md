@@ -1,3 +1,16 @@
+## 1.8.1 (2020-04-03)
+
+### Features
+
+- vu CLI displays generated files with relative path.
+- vu CLI displays ejected Template files with relative path.
+- Renamed project.
+- README Added command table with links.
+- Updated install script.
+- Refresh Bash shell environment with upgrade vu script.
+
+---
+
 ## 1.8.0 (2020-04-03)
 
 ### Features
