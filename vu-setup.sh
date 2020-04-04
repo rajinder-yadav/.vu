@@ -6,7 +6,7 @@
 # Author: Rajinder Yadav
 # Date: April 2, 2020
 # Licence: MIT
-# Version: 1.1.4
+# Version: 1.1.5
 #=============================================================================================
 NODE=$(command -v node)
 NPM=$(command -v npm)
