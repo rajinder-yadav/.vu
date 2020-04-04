@@ -9,9 +9,9 @@
 # Github: https://github.com/rajinder-yadav/.vu
 #=============================================================================================
 IDE="/usr/bin/code-insiders"
-WARM='\033[1;33m'
-HIGHLIGHT='\033[0;32m'
-NO_HIGHLIGHT='\033[0m' # No Color
+WARN_ON='\033[1;33m'
+HILIGHT_ON='\033[0;32m'
+HILIGHT_OFF='\033[0m' # No Color
 
 # export CLI_CWD=$(pwd)
 
@@ -36,7 +36,7 @@ function vu() {
         # Command: eject
         eject)
             if [ -d ${HOME}/.vurc ]; then
-                printf "${WARN}"
+                printf "${WARN_ON}"
                 printf "=> WARNING: Template folder exists.\n"
                 printf "=> WARNING: Ejecting will destory old changes.\n"
                 read -r -p "Do you want to continue? [y/N] " response
@@ -49,12 +49,12 @@ function vu() {
                         printf "=> Eject operation cancelled.\n"
                         ;;
                 esac
-                printf "${NO_HIGHLIGHT}"
+                printf "${HILIGHT_OFF}"
             fi
 
             if [ ${EJECT} == "yes" ]; then
                 cp -r ${HOME}/.vu/templates ${HOME}/.vurc
-                printf "${HIGHLIGHT}"
+                printf "${HILIGHT_ON}"
                 printf "=> Creating Template folder\n"
                 printf "=> Creating Template files\n"
                 printf "  => ${HOME}/.vurc/component.vu\n"
@@ -63,7 +63,7 @@ function vu() {
                 printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
                 printf "=> Make your custom change in these files.\n"
                 printf "=> Delete this folder to return to using the defaults.\n"
-                printf "${NO_HIGHLIGHT}"
+                printf "${HILIGHT_OFF}"
             fi
         ;;
 
@@ -77,9 +77,9 @@ function vu() {
                 # Need to get this working to open vscode with project.
                 # "`${IDE}` $CLI_CWD/$2"
             else
-                printf "${WARN}"
+                printf "${WARN_ON}"
                 printf "=> WARNING: Folder exist! Failed to create Project.\n"
-                printf "${HIGHLIGHT}"
+                printf "${HILIGHT_OFF}"
             fi
         ;;
 
@@ -123,7 +123,9 @@ function vu() {
             pushd ${HOME}/.vu &> /dev/null
             git pull
             popd &> /dev/null
-            source ${HOME}/.vu/vu.sh
+            printf "${HILIGHT_ON}"
+            printf "=> Update Bash shell with, \"source ${HOME}/.vu/vu.sh\"\n"
+            printf "${HILIGHT_OFF}"
         ;;
 
         # Command: version
@@ -142,7 +144,7 @@ function vu() {
 
 function ShowUsage() {
     # Show usage help.
-    printf "${HIGHLIGHT}"
+    printf "${HILIGHT_ON}"
     printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.0)\n\n"
     printf "Usage: vu <command> [options]\n\n"
     printf "CMD\tOptions\t\t\tDescription\n"
@@ -156,7 +158,7 @@ function ShowUsage() {
     printf "v\t\t\t\tShow version\n\n"
     printf "eject\t\t\t\tEject code generation Templates\n"
     printf "upgrade\t\t\t\tUpgrade vu script\n\n"
-    printf "${NO_HIGHLIGHT}"
+    printf "${HILIGHT_OFF}"
 }
 
 
@@ -168,20 +170,20 @@ function GenerateComponent() {
     CSS_EXT=${3}
 
     if [ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]; then
-        printf "${HIGHLIGHT}"
+        printf "${HILIGHT_ON}"
         printf "=> Creating Component folder.\n"
         mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
         printf "=> Creating Component files.\n"
-        printf "${NO_HIGHLIGHT}"
+        printf "${HILIGHT_OFF}"
         touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
 
         GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
         GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
         GenerateStyleFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
     else
-        printf "${WARM}"
+        printf "${WARN_ON}"
         printf "=> WARNING: Component folder exist, no operation was performed.\n"
-        printf "${NO_HIGHLIGHT}"
+        printf "${HILIGHT_OFF}"
     fi
 }
 
@@ -206,9 +208,9 @@ function GenerateClassFile() {
 # EOF
 
     fi
-    printf "${HIGHLIGHT}"
+    printf "${HILIGHT_ON}"
     printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts\n"
-    printf "${NO_HIGHLIGHT}"
+    printf "${HILIGHT_OFF}"
 }
 
 
@@ -234,8 +236,9 @@ function GenerateTemplateFile() {
 
     fi
 
-    printf "${HIGHLIGHT}"
+    printf "${HILIGHT_ON}"
     printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue\n"
+    printf "${HILIGHT_OFF}"
 }
 
 
@@ -251,6 +254,7 @@ function GenerateStyleFile() {
         FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
     fi
 
+    printf "${HILIGHT_ON}"
     printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}\n"
-    printf "${NO_HIGHLIGHT}"
+    printf "${HILIGHT_OFF}"
 }

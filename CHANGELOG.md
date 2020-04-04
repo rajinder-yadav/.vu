@@ -1,3 +1,9 @@
+## 1.9.0 (2020-04-03)
+
+### Features
+
+- Check before ejecting Template, prompt User.
+
 ## 1.8.1 (2020-04-03)
 
 ### Features
