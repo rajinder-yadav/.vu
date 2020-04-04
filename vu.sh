@@ -36,7 +36,12 @@ function vu() {
         # Command: eject
         eject)
             cp -r ${HOME}/.vu/templates ${HOME}/.vurc
-            printf "${HIGHLIGHT}"
+            printf "=> ${HIGHLIGHT}"
+            printf "=> Creating Template folder\n"
+            printf "=> Creating Template files\n"
+            printf "  => ${HOME}/.vurc/component.vu\n"
+            printf "  => ${HOME}/.vurc/style.vu\n"
+            printf "  => ${HOME}/.vurc/template.vu\n"
             printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
             printf "=> Make your custom change in these files.\n"
             printf "=> Delete this folder to return to using the defaults.\n"
