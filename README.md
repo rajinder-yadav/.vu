@@ -104,7 +104,7 @@ Clone project "__vu__" under your home folder.
 
 ```sh
 cd ~
-git clone git@github.com:rajinder-yadav/vu.git ${HOME}/.vu
+git clone https://github.com/rajinder-yadav/vu.git ${HOME}/.vu
 ```
 
 Next add the code snippet below to "__~/.bashrc__" or "__~/.bash_profile__".
