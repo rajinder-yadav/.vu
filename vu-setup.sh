@@ -51,7 +51,7 @@ if [ -d ${HOME}/.vu ]; then
     popd &> /dev/null
 else
     # Download vu and update Bash init script.
-    git clone https://github.com/rajinder-yadav/vu.git
+    git clone https://github.com/rajinder-yadav/vu.git ${HOME}/.vu
     if [ $? -eq 0 ]; then
         echo "=> SUCCESS: vu project downloaded."
     else
