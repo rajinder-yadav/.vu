@@ -65,7 +65,7 @@ else
   fi
 
   # Only update Bash init if snippet does not exist.
-  grep -P "{HOME}/.vu/vu.sh" ~/.bashrc &>/dev/null
+  grep -P "{HOME}/.vu/vu.sh" ~/.bashrc &> /dev/null
   if [ $? -ne 0 ]; then
   cat >> "${BASH_PROFILE}" <<-EOF
 
