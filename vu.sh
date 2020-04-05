@@ -6,7 +6,7 @@
 # Licence: MIT
 # Version: 1.9.1
 #
-# Github: https://github.com/rajinder-yadav/.vu
+# Github: https://github.com/rajinder-yadav/vu
 #=============================================================================================
 IDE="/usr/bin/code-insiders"
 WARN_ON='\033[1;33m'
@@ -176,7 +176,6 @@ function GenerateComponent() {
     mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
     printf "=> Creating Component files.\n"
     printf "${HILIGHT_OFF}"
-    touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
 
     GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
     GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
@@ -199,16 +198,8 @@ function GenerateClassFile() {
     FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
   else
     FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
-
-# cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
-# import { Component, Prop, Vue } from "vue-property-decorator";
-
-# @Component
-# export default class ${COMPONENT_NAME} extends Vue {
-# }
-# EOF
-
   fi
+
   printf "${HILIGHT_ON}"
   printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts\n"
   printf "${HILIGHT_OFF}"
@@ -225,16 +216,6 @@ function GenerateTemplateFile() {
     FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
   else
     FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
-
-# cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
-# <template>
-#   <div></div>
-# </template>
-
-# <script lang="ts" src="./${COMPONENT_NAME}.ts" />
-# <style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
-# EOF
-
   fi
 
   printf "${HILIGHT_ON}"
