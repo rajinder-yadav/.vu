@@ -17,188 +17,188 @@ HILIGHT_OFF='\033[0m' # No Color
 
 function vu() {
 
-    if [ -d "src" ]; then
-        CSS_EXT=$(grep -Po '<style\slang="\K\w*' src/App.vue)
-    fi
+  if [ -d "src" ]; then
+    CSS_EXT=$(grep -Po '<style\slang="\K\w*' src/App.vue)
+  fi
 
-    if [ -z "$CSS_EXT" ]; then
-        # Fallback style type.
-        CSS_EXT="stylus"
-    fi
+  if [ -z "$CSS_EXT" ]; then
+    # Fallback style type.
+    CSS_EXT="stylus"
+  fi
 
-    case ${1} in
+  case ${1} in
 
-        # Command: build
-        b)
-            npm run build
-        ;;
+    # Command: build
+    b)
+      npm run build
+    ;;
 
-        # Command: eject
-        eject)
+    # Command: eject
+    eject)
+      EJECT="yes"
+      if [ -d ${HOME}/.vurc ]; then
+        printf "${WARN_ON}"
+        printf "=> WARNING: Template folder exists.\n"
+        printf "=> WARNING: Ejecting will destory old changes.\n"
+        read -r -p "Do you want to continue? [y/N] " response
+        case ${response} in
+          [yY][eE][sS]|[yY])
             EJECT="yes"
-            if [ -d ${HOME}/.vurc ]; then
-                printf "${WARN_ON}"
-                printf "=> WARNING: Template folder exists.\n"
-                printf "=> WARNING: Ejecting will destory old changes.\n"
-                read -r -p "Do you want to continue? [y/N] " response
-                case ${response} in
-                    [yY][eE][sS]|[yY])
-                        EJECT="yes"
-                        ;;
-                    *)
-                        EJECT="no"
-                        printf "=> Eject operation cancelled.\n"
-                        ;;
-                esac
-                printf "${HILIGHT_OFF}"
-            fi
+            ;;
+          *)
+            EJECT="no"
+            printf "=> Eject operation cancelled.\n"
+            ;;
+        esac
+        printf "${HILIGHT_OFF}"
+      fi
 
-            if [ ${EJECT} == "yes" ]; then
-                cp -r ${HOME}/.vu/templates ${HOME}/.vurc
-                printf "${HILIGHT_ON}"
-                printf "=> Creating Template folder\n"
-                printf "=> Creating Template files\n"
-                printf "  => ${HOME}/.vurc/component.vu\n"
-                printf "  => ${HOME}/.vurc/style.vu\n"
-                printf "  => ${HOME}/.vurc/template.vu\n"
-                printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
-                printf "=> Make your custom change in these files.\n"
-                printf "=> Delete this folder to return to using the defaults.\n"
-                printf "${HILIGHT_OFF}"
-            fi
-        ;;
+      if [ ${EJECT} == "yes" ]; then
+        cp -r ${HOME}/.vu/templates ${HOME}/.vurc
+        printf "${HILIGHT_ON}"
+        printf "=> Creating Template folder\n"
+        printf "=> Creating Template files\n"
+        printf "  => ${HOME}/.vurc/component.vu\n"
+        printf "  => ${HOME}/.vurc/style.vu\n"
+        printf "  => ${HOME}/.vurc/template.vu\n"
+        printf "=> SUCCESS: Template files ejected folder: ${HOME}/.vurc\n"
+        printf "=> Make your custom change in these files.\n"
+        printf "=> Delete this folder to return to using the defaults.\n"
+        printf "${HILIGHT_OFF}"
+      fi
+    ;;
 
-        # Command: new
-        new)
-            if [ ! -d ${2} ]; then
-                # Create a new project.
-                vue create ${2}
-                cd ${2}
+    # Command: new
+    new)
+      if [ ! -d ${2} ]; then
+        # Create a new project.
+        vue create ${2}
+        cd ${2}
 
-                # Need to get this working to open vscode with project.
-                # "`${IDE}` $CLI_CWD/$2"
-            else
-                printf "${WARN_ON}"
-                printf "=> WARNING: Folder exist! Failed to create Project.\n"
-                printf "${HILIGHT_OFF}"
-            fi
-        ;;
+        # Need to get this working to open vscode with project.
+        # "`${IDE}` $CLI_CWD/$2"
+      else
+        printf "${WARN_ON}"
+        printf "=> WARNING: Folder exist! Failed to create Project.\n"
+        printf "${HILIGHT_OFF}"
+      fi
+    ;;
 
-        # Command: generate
-        g)
-            if [ "$#" -lt 3 ]; then
-                ShowUsage
-            else
-                case ${2} in
-                    # Option: component
-                    c)
-                        # Use default components folder.
-                        GenerateComponent "components" ${3} ${CSS_EXT}
-                    ;;
+    # Command: generate
+    g)
+      if [ "$#" -lt 3 ]; then
+        ShowUsage
+      else
+        case ${2} in
+          # Option: component
+          c)
+            # Use default components folder.
+            GenerateComponent "components" ${3} ${CSS_EXT}
+          ;;
 
-                    # Option: view
-                    v)
-                        # Use default components folder.
-                        GenerateComponent "views" ${3} ${CSS_EXT}
-                    ;;
+          # Option: view
+          v)
+            # Use default components folder.
+            GenerateComponent "views" ${3} ${CSS_EXT}
+          ;;
 
-                    # Default: Use specified folder for code generation.
-                    *)
-                        # Folder & Component name provided.
-                        GenerateComponent ${2} ${3} ${CSS_EXT}
-                    ;;
-                esac
-            fi
-        ;;
+          # Default: Use specified folder for code generation.
+          *)
+            # Folder & Component name provided.
+            GenerateComponent ${2} ${3} ${CSS_EXT}
+          ;;
+        esac
+      fi
+    ;;
 
 
-        # Command: server
-        s)
-            # Run development server.
-            npm run serve
-        ;;
+    # Command: server
+    s)
+      # Run development server.
+      npm run serve
+    ;;
 
-        # Command: upgrade
-        upgrade)
-            # Upgrade vu script.
-            pushd ${HOME}/.vu &> /dev/null
-            git pull
-            popd &> /dev/null
-            printf "${HILIGHT_ON}"
-            printf "=> Update Bash shell with, \"source ${HOME}/.vu/vu.sh\"\n"
-            printf "${HILIGHT_OFF}"
-        ;;
+    # Command: upgrade
+    upgrade)
+      # Upgrade vu script.
+      pushd ${HOME}/.vu &> /dev/null
+      git pull
+      popd &> /dev/null
+      printf "${HILIGHT_ON}"
+      printf "=> Update Bash shell with, \"source ${HOME}/.vu/vu.sh\"\n"
+      printf "${HILIGHT_OFF}"
+    ;;
 
-        # Command: version
-        v)
-            echo "v1.9.1"
-        ;;
+    # Command: version
+    v)
+      echo "v1.9.1"
+    ;;
 
-        # Default: Show usage help text.
-        *)
-            ShowUsage
-        ;;
+    # Default: Show usage help text.
+    *)
+      ShowUsage
+    ;;
 
-    esac
+  esac
 }
 
 
 function ShowUsage() {
-    # Show usage help.
-    printf "${HILIGHT_ON}"
-    printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.1)\n\n"
-    printf "Usage: vu <command> [options]\n\n"
-    printf "CMD\tOptions\t\t\tDescription\n"
-    printf "===\t=======\t\t\t===========\n"
-    printf "new\t<name>\t\t\tCreate Vue.js Project\n"
-    printf "b\t\t\t\tProduction build\n"
-    printf "g\tc <name>\t\tGenerate Component under \"components\" folder\n"
-    printf "g\tv <name>\t\tGenerate Component under \"views\" folder\n"
-    printf "g\t<folder> <name>\t\tGenerate Component under declared folder\n"
-    printf "s\t\t\t\tRun development Server\n"
-    printf "v\t\t\t\tShow version\n\n"
-    printf "eject\t\t\t\tEject code generation Templates\n"
-    printf "upgrade\t\t\t\tUpgrade vu script\n\n"
-    printf "${HILIGHT_OFF}"
+  # Show usage help.
+  printf "${HILIGHT_ON}"
+  printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.9.1)\n\n"
+  printf "Usage: vu <command> [options]\n\n"
+  printf "CMD\tOptions\t\t\tDescription\n"
+  printf "===\t=======\t\t\t===========\n"
+  printf "new\t<name>\t\t\tCreate Vue.js Project\n"
+  printf "b\t\t\t\tProduction build\n"
+  printf "g\tc <name>\t\tGenerate Component under \"components\" folder\n"
+  printf "g\tv <name>\t\tGenerate Component under \"views\" folder\n"
+  printf "g\t<folder> <name>\t\tGenerate Component under declared folder\n"
+  printf "s\t\t\t\tRun development Server\n"
+  printf "v\t\t\t\tShow version\n\n"
+  printf "eject\t\t\t\tEject code generation Templates\n"
+  printf "upgrade\t\t\t\tUpgrade vu script\n\n"
+  printf "${HILIGHT_OFF}"
 }
 
 
 function GenerateComponent() {
-    # Creat Component.
-    # Default Component folder.
-    FOLDER=${1}
-    COMPONENT_NAME=${2}
-    CSS_EXT=${3}
+  # Creat Component.
+  # Default Component folder.
+  FOLDER=${1}
+  COMPONENT_NAME=${2}
+  CSS_EXT=${3}
 
-    if [ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]; then
-        printf "${HILIGHT_ON}"
-        printf "=> Creating Component folder.\n"
-        mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
-        printf "=> Creating Component files.\n"
-        printf "${HILIGHT_OFF}"
-        touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+  if [ ! -d ./src/${FOLDER}/${COMPONENT_NAME} ]; then
+    printf "${HILIGHT_ON}"
+    printf "=> Creating Component folder.\n"
+    mkdir -p ./src/${FOLDER}/${COMPONENT_NAME}
+    printf "=> Creating Component files.\n"
+    printf "${HILIGHT_OFF}"
+    touch ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
 
-        GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
-        GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
-        GenerateStyleFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
-    else
-        printf "${WARN_ON}"
-        printf "=> WARNING: Component folder exist, no operation was performed.\n"
-        printf "${HILIGHT_OFF}"
-    fi
+    GenerateClassFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
+    GenerateTemplateFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
+    GenerateStyleFile ${FOLDER} ${COMPONENT_NAME} ${CSS_EXT}
+  else
+    printf "${WARN_ON}"
+    printf "=> WARNING: Component folder exist, no operation was performed.\n"
+    printf "${HILIGHT_OFF}"
+  fi
 }
 
 
 function GenerateClassFile() {
-    FOLDER=${1}
-    COMPONENT_NAME=${2}
-    CSS_EXT=${3}
+  FOLDER=${1}
+  COMPONENT_NAME=${2}
+  CSS_EXT=${3}
 
-    # Generate Class file.
-    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/component.vu ]]; then
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
-    else
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+  # Generate Class file.
+  if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/component.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
+  else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/component.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts
 
 # cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts" <<-EOF
 # import { Component, Prop, Vue } from "vue-property-decorator";
@@ -208,23 +208,23 @@ function GenerateClassFile() {
 # }
 # EOF
 
-    fi
-    printf "${HILIGHT_ON}"
-    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts\n"
-    printf "${HILIGHT_OFF}"
+  fi
+  printf "${HILIGHT_ON}"
+  printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.ts\n"
+  printf "${HILIGHT_OFF}"
 }
 
 
 function GenerateTemplateFile() {
-    FOLDER=${1}
-    COMPONENT_NAME=${2}
-    CSS_EXT=${3}
+  FOLDER=${1}
+  COMPONENT_NAME=${2}
+  CSS_EXT=${3}
 
-    # Generate Template file.
-    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/template.vu ]]; then
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
-    else
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+  # Generate Template file.
+  if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/template.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
+  else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/template.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue
 
 # cat > "./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue" <<-EOF
 # <template>
@@ -235,27 +235,27 @@ function GenerateTemplateFile() {
 # <style scoped lang="${CSS_EXT}" src="./${COMPONENT_NAME}.${CSS_EXT}" />
 # EOF
 
-    fi
+  fi
 
-    printf "${HILIGHT_ON}"
-    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue\n"
-    printf "${HILIGHT_OFF}"
+  printf "${HILIGHT_ON}"
+  printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.vue\n"
+  printf "${HILIGHT_OFF}"
 }
 
 
 function GenerateStyleFile() {
-    FOLDER=${1}
-    COMPONENT_NAME=${2}
-    CSS_EXT=${3}
+  FOLDER=${1}
+  COMPONENT_NAME=${2}
+  CSS_EXT=${3}
 
-    # Generate Style file.
-    if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
-    else
-        FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
-    fi
+  # Generate Style file.
+  if [[ -d ${HOME}/.vurc && -f ${HOME}/.vurc/style.vu ]]; then
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vurc/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+  else
+    FOLDER=${1} COMPONENT_NAME=${2} CSS_EXT=${3} envsubst < ${HOME}/.vu/templates/style.vu > ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}
+  fi
 
-    printf "${HILIGHT_ON}"
-    printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}\n"
-    printf "${HILIGHT_OFF}"
+  printf "${HILIGHT_ON}"
+  printf "  => Created: ./src/${FOLDER}/${COMPONENT_NAME}/${COMPONENT_NAME}.${CSS_EXT}\n"
+  printf "${HILIGHT_OFF}"
 }
