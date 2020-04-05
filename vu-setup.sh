@@ -6,7 +6,7 @@
 # Author: Rajinder Yadav
 # Date: April 2, 2020
 # Licence: MIT
-# Version: 1.2.0
+# Version: 1.2.1
 #=============================================================================================
 NODE=$(command -v node)
 NPM=$(command -v npm)
@@ -51,7 +51,7 @@ if [ -d ${HOME}/.vu ]; then
     popd &> /dev/null
 else
     # Download vu and update Bash init script.
-    git clone git@github.com:rajinder-yadav/vu.git ${HOME}/.vu
+    git clone https://github.com/rajinder-yadav/vu.git
     if [ $? -eq 0 ]; then
         echo "=> SUCCESS: vu project downloaded."
     else
