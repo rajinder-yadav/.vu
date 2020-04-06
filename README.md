@@ -78,17 +78,20 @@ From the terminal, type "__vu__" and press enter. You should see the following o
 ```pre
 $ vu
 
-The missing Vue.js CLI for TypeScript 😍 (v1.9.1)
+The missing Vue.js CLI for TypeScript 😍 (v1.10.0)
 
 Usage: vu <command> [options]
 
 CMD     Options                 Description
 ===     =======                 ===========
 new     <name>                  Create Vue.js Project
+add                             Install a Plugin
 b                               Production build
+
 g       c <name>                Generate Component under "components" folder
 g       v <name>                Generate Component under "views" folder
 g       <folder> <name>         Generate Component under declared folder
+
 s                               Run development Server
 v                               Show version
 
