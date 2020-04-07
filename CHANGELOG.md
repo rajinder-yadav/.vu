@@ -1,12 +1,13 @@
-## 1.9.0 (2020-04-03)
+## 1.10.1 (2020-04-06)
 
 ### Features
 
 - new Add command.
+- new command shortcut (n|new).
 
 ---
 
-## 1.9.0 (2020-04-03)
+## 1.9.0 (2020-04-04)
 
 ### Features
 
