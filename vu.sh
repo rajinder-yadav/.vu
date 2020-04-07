@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.10.0
+# Version: 1.10.1
 #
 # Github: https://github.com/rajinder-yadav/vu
 #=============================================================================================
@@ -80,7 +80,7 @@ function vu() {
     ;;
 
     # Command: new
-    new)
+    n|new)
       if [ ! -d ${2} ]; then
         # Create a new project.
         vue create ${2}
@@ -142,7 +142,7 @@ function vu() {
 
     # Command: version
     v)
-      echo "v1.10.0"
+      echo "v1.10.1"
     ;;
 
     # Default: Show usage help text.
@@ -157,20 +157,20 @@ function vu() {
 function ShowUsage() {
   # Show usage help.
   printf "${HILIGHT_ON}"
-  printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.10.0)\n\n"
+  printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.10.1)\n\n"
   printf "Usage: vu <command> [options]\n\n"
-  printf "CMD\tOptions\t\t\tDescription\n"
-  printf "===\t=======\t\t\t===========\n"
-  printf "new\t<name>\t\t\tCreate Vue.js Project\n"
-  printf "add\t\t\t\tInstall a Plugin\n"
-  printf "b\t\t\t\tProduction build\n\n"
-  printf "g\tc <name>\t\tGenerate Component under \"components\" folder\n"
-  printf "g\tv <name>\t\tGenerate Component under \"views\" folder\n"
-  printf "g\t<folder> <name>\t\tGenerate Component under declared folder\n\n"
-  printf "s\t\t\t\tRun development Server\n"
-  printf "v\t\t\t\tShow version\n\n"
-  printf "eject\t\t\t\tEject code generation Templates\n"
-  printf "upgrade\t\t\t\tUpgrade vu script\n\n"
+  printf "CMD      Options           Description\n"
+  printf "===      =======           ===========\n"
+  printf "add                        Install a Plugin\n"
+  printf "b                          Production build\n\n"
+  printf "g        c <name>          Generate Component under \"components\" folder\n"
+  printf "g        v <name>          Generate Component under \"views\" folder\n"
+  printf "g        <folder> <name>   Generate Component under declared folder\n\n"
+  printf "n|new    <name>            Create Vue.js Project\n"
+  printf "s                          Run development Server\n"
+  printf "v                          Show version\n\n"
+  printf "eject                      Eject code generation Templates\n"
+  printf "upgrade                    Upgrade vu script\n\n"
   printf "${HILIGHT_OFF}"
 }
 
