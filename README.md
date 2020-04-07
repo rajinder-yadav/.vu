@@ -244,6 +244,12 @@ Create a new Vue.js project named "hello-world".
 vu new hello-world
 ```
 
+OR
+
+```sh
+vu n hello-world
+```
+
 Once the project has been created, you will automatically be placed inside the new project root folder.
 
 #### Deselect Babel
