@@ -14,13 +14,14 @@ A Vue.js utility for TypeScript projects.
   - [Setting up manually](#setting-up-manually)
   - [Commands](#commands)
   - [Usage](#usage)
-    - [Create a Project](#create-a-project)
-      - [Deselect Babel](#deselect-babel)
+    - [Add Plugin](#add-plugin)
+    - [Build release](#build-release)
     - [Generate a Component](#generate-a-component)
     - [Generate a View Component](#generate-a-view-component)
     - [Generate Component in another folder](#generate-component-in-another-folder)
+    - [Create a Project](#create-a-project)
+      - [Deselect Babel](#deselect-babel)
     - [Run dev Server](#run-dev-server)
-    - [Build release](#build-release)
     - [Show Version](#show-version)
     - [Upgrading vu](#upgrading-vu)
     - [Customizing generated code](#customizing-generated-code)
@@ -82,21 +83,21 @@ The missing Vue.js CLI for TypeScript 😍 (v1.10.1)
 
 Usage: vu <command> [options]
 
-CMD     Options                 Description
-===     =======                 ===========
-new     <name>                  Create Vue.js Project
-add                             Install a Plugin
-b                               Production build
+CMD     Options            Description
+===     =======            ===========
+add                        Install Plugin
+b                          Production build
 
-g       c <name>                Generate Component under "components" folder
-g       v <name>                Generate Component under "views" folder
-g       <folder> <name>         Generate Component under declared folder
+g        c <name>          Generate Component under "components" folder
+g        v <name>          Generate Component under "views" folder
+g        <folder> <name>   Generate Component under declared folder
 
-s                               Run development Server
-v                               Show version
+n|new    <name>            Create Vue.js Project
+s                          Run development Server
+v                          Show version
 
-eject                           Eject code generation Templates
-upgrade                         Upgrade vu script
+eject                      Eject code generation Templates
+upgrade                    Upgrade vu script```
 ```
 
 ## Setting up manually
@@ -131,12 +132,13 @@ Syntax: __vu \<command> [options]__
 
 Description|Command|Operation
 -|-|-
-[New](#create-a-project)|__new__|Create and new project.
+[Add](#add-plugin)|add|Install Plugin
 [Build](#build-release)|__b__|Production build.
 Generate|__g__|Generate Code in a sub-folder.
 [Generate Component](#generate-a-component)|__g c__|Code placed under "__components__" sub-folder.
 [Generate View](#generate-a-view-component)|__g v__|Code placed under "__views__" sub-folder.
 [Generate sub-folder](#generate-component-in-another-folder)|__g \<folder>__|Code placed under "__\<folder>__" sub-folder.
+[New](#create-a-project)|__n \| new__|Create and new project.
 [Server](#run-dev-server)|__s__|Start development server.
 [Version](#show-version)|__v__|Display version.
 [eject](#customizing-generated-code)|__eject__|Eject code generation Templatess.
@@ -146,23 +148,19 @@ Generate|__g__|Generate Code in a sub-folder.
 
 You can for the most part work with the vu CLI exclusively.
 
-### Create a Project
-
-Create a new Vue.js project named "hello-world".
+### Add Plugin
 
 ```sh
-vu new hello-world
+vu add <plugin>
 ```
 
-Once the project has been created, you will automatically be placed inside the new project root folder.
+### Build release
 
-#### Deselect Babel
+Create a production build to deployment.
 
-When creating a TypeScript project, deselect Bable and just select Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
-
-There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
-
-![image](images/vue-ts.png)
+```sh
+vu b
+```
 
 ### Generate a Component
 
@@ -238,20 +236,30 @@ A check will be made before creating the folder and files, if the folder exist  
 => WARNING: Component folder exist, no operation was performed.
 ```
 
+### Create a Project
+
+Create a new Vue.js project named "hello-world".
+
+```sh
+vu new hello-world
+```
+
+Once the project has been created, you will automatically be placed inside the new project root folder.
+
+#### Deselect Babel
+
+When creating a TypeScript project, deselect Bable and just select Typescript from the CLI prompt. Using Bable with Bable plugins for TypeScript is not TypeScript.
+
+There is no advantage using both, since TypeScript is a super-set of ECMAScript and future proof.
+
+![image](images/vue-ts.png)
+
 ### Run dev Server
 
 Start the development server.
 
 ```sh
 vu s
-```
-
-### Build release
-
-Create a production build to deployment.
-
-```sh
-vu b
 ```
 
 ### Show Version
