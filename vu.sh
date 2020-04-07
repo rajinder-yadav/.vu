@@ -161,7 +161,7 @@ function ShowUsage() {
   printf "Usage: vu <command> [options]\n\n"
   printf "CMD      Options           Description\n"
   printf "===      =======           ===========\n"
-  printf "add                        Install a Plugin\n"
+  printf "add                        Install Plugin\n"
   printf "b                          Production build\n\n"
   printf "g        c <name>          Generate Component under \"components\" folder\n"
   printf "g        v <name>          Generate Component under \"views\" folder\n"
