@@ -190,7 +190,7 @@ A check will be made before creating the folder and files, if the folder exist  
 ### Generate a View Component
 
 Generate a View Component called Home.
-The generated code is placed in the subfolder, "__src/views/Dashboard__".
+The generated code is placed in the subfolder, "__src/views/Home__".
 
 ```sh
 vu g v Home
