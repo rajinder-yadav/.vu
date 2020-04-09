@@ -285,7 +285,6 @@ vu upgrade
 ```
 
 For the new update to take effect, you will need to refresh the Bash shell.
-
 Pay attention to the output on how to do this, or just open a new Terminal.
 
 ```sh
