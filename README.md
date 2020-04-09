@@ -65,7 +65,7 @@ Before running the install script below, make sure you have the following instal
 1. Node.js
 1. Git
 
-Run the following multi-line command in your terminal.
+Run the following multi-line command in your Terminal.
 
 ```sh
 curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
@@ -74,7 +74,7 @@ curl https://raw.githubusercontent.com/rajinder-yadav/.vu/master/vu-setup.sh \
 
 ### Verifying
 
-From the terminal, type "__vu__" and press enter. You should see the following output.
+From the Terminal, type "__vu__" and press enter. You should see the following output.
 
 ```pre
 $ vu
@@ -171,7 +171,7 @@ The generated code is placed in the subfolder, "__src/components/Dashboard__".
 vu g c Dashboard
 ```
 
-The output to the terminal should looks like:
+The output to the Terminal should looks like:
 
 ```sh
 => Creating Component folder.
@@ -196,7 +196,7 @@ The generated code is placed in the subfolder, "__src/views/Home__".
 vu g v Home
 ```
 
-The output to the terminal should looks like:
+The output to the Terminal should looks like:
 
 ```sh
 => Creating Component folder.
@@ -220,7 +220,7 @@ Generate a Component called Login under subfolder, "__src/Admin/Login__".
 vu g Admin Login
 ```
 
-The output to the terminal should looks like:
+The output to the Terminal should looks like:
 
 ```sh
 => Creating Component folder.
@@ -284,6 +284,14 @@ This will update the vu CLI.
 vu upgrade
 ```
 
+For the new update to take effect, you will need to refresh the Bash shell.
+
+Pay attention to the output on how to do this, or just open a new Terminal.
+
+```sh
+=> Update Bash shell with, "source /home/yadav/.vu/vu.sh"
+```
+
 ### Customizing generated code
 
 To customize code generation, you must first eject the template files.
@@ -294,7 +302,7 @@ vu eject
 
 The ejected template files can be found under the subfolder "__.vurc__", located under your home folder.
 
-The output to the terminal should looks like:
+The output to the Terminal should looks like:
 
 ```sh
 => Creating Template folder
