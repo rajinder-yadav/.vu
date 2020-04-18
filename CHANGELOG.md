@@ -1,9 +1,17 @@
+## 1.11.0 (2020-04-18)
+
+### Features
+
+- New UI command.
+
+---
+
 ## 1.10.1 (2020-04-06)
 
 ### Features
 
-- new Add command.
-- new command shortcut (n|new).
+- New Add command.
+- New command shortcut (n|new).
 
 ---
 

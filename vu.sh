@@ -4,7 +4,7 @@
 # Author: Rajinder Yadav
 # Date: March 28, 2020
 # Licence: MIT
-# Version: 1.10.1
+# Version: 1.11.0
 #
 # Github: https://github.com/rajinder-yadav/vu
 #=============================================================================================
@@ -129,6 +129,12 @@ function vu() {
       npm run serve
     ;;
 
+    # Command: ui
+
+    ui)
+      vue ui
+    ;;
+
     # Command: upgrade
     upgrade)
       # Upgrade vu script.
@@ -142,7 +148,7 @@ function vu() {
 
     # Command: version
     v)
-      echo "v1.10.1"
+      echo "v1.11.0"
     ;;
 
     # Default: Show usage help text.
@@ -157,7 +163,7 @@ function vu() {
 function ShowUsage() {
   # Show usage help.
   printf "${HILIGHT_ON}"
-  printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.10.1)\n\n"
+  printf "\nThe missing Vue.js CLI for TypeScript 😍 (v1.11.0)\n\n"
   printf "Usage: vu <command> [options]\n\n"
   printf "CMD      Options           Description\n"
   printf "===      =======           ===========\n"
@@ -168,6 +174,7 @@ function ShowUsage() {
   printf "g        <folder> <name>   Generate Component under declared folder\n\n"
   printf "n|new    <name>            Create Vue.js Project\n"
   printf "s                          Run development Server\n"
+  printf "ui                         Run Vue UI\n"
   printf "v                          Show version\n\n"
   printf "eject                      Eject code generation Templates\n"
   printf "upgrade                    Upgrade vu script\n\n"
