@@ -22,6 +22,7 @@ A Vue.js utility for TypeScript projects.
     - [Create a Project](#create-a-project)
       - [Tip: Deselect Babel](#tip-deselect-babel)
     - [Run dev Server](#run-dev-server)
+    - [Run UI Server](#run-ui-server)
     - [Show Version](#show-version)
     - [Upgrading vu](#upgrading-vu)
     - [Customizing generated code](#customizing-generated-code)
@@ -268,6 +269,18 @@ Start the development server.
 ```sh
 vu s
 ```
+
+You can now view the Vue.js Website at "http://localhost:8080/".
+
+### Run UI Server
+
+Starts the Vue.js UI server.
+
+```sh
+vu ui
+```
+
+This will open default Web Browser with URL "http://localhost:8000/dashboard".
 
 ### Show Version
 
